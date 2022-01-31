@@ -9,6 +9,7 @@ mkdir -p data
 docker run --name ethereum-fullnode -d \
         --restart unless-stopped \
         --stop-timeout 30 \
+        --memory 8G \
         -p 8745:8745 -p 8746:8746 -p 30305:30305 -p 30305:30305/udp \
         -v $PWD/data:/opt/openethereum/data $IMAGE \
         --chain foundation \
