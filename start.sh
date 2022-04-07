@@ -3,8 +3,8 @@ docker stop ethereum-fullnode
 docker rm ethereum-fullnode
 
 export IMAGE=diwu1989/ethereum-fullnode:latest
-export MAX_PEERS=64
-export CACHE=128
+export MAX_PEERS=128
+export CACHE=1024
 mkdir -p data
 docker run --name ethereum-fullnode -d \
         --restart unless-stopped \
