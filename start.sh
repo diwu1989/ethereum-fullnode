@@ -5,12 +5,13 @@ docker rm ethereum-fullnode
 export IMAGE=diwu1989/ethereum-fullnode:latest
 export MAX_PEERS=128
 export CACHE=1024
+export PORT=30399
 mkdir -p data
 docker run --name ethereum-fullnode -d \
         --restart unless-stopped \
         --stop-timeout 30 \
         --memory 8G \
-        -p 8745:8745 -p 8746:8746 -p 30305:30305 -p 30305:30305/udp \
+        -p 127.0.0.1:8745:8745 -p 8746:8746 -p $PORT:$PORT -p $PORT:$PORT/udp \
         -v $PWD/data:/opt/openethereum/data $IMAGE \
         --chain foundation \
         --base-path '/opt/openethereum/data' \
@@ -27,5 +28,5 @@ docker run --name ethereum-fullnode -d \
         --max-peers $MAX_PEERS \
         --no-secretstore \
         --no-persistent-txqueue \
-        --port 30305 \
+        --port $PORT \
         --cache-size $CACHE
